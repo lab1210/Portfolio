@@ -1,10 +1,22 @@
+"use client";
 import Link from "next/link";
-import React from "react";
-import { IoCode } from "react-icons/io5";
+import React, { useState } from "react";
+import { IoClose, IoCode } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 const Home = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    console.log("Sidebar toggled");
+  };
   return (
     <div className="grid grid-rows-[30px_auto_auto_auto] bg-[#ffffff] h-screen overflow-y-auto overflow-x-hidden ">
+      {isSidebarOpen && (
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black/65 z-10 transition-opacity duration-300"
+          onClick={toggleSidebar}
+        ></div>
+      )}
       <div className=" bg-[#ffffff] flex justify-between items-center p-5 lg:pl-15 lg:pr-15 sticky top-0 z-10 shadow-md lg:shadow-none">
         <Link
           href={"/"}
@@ -24,10 +36,32 @@ const Home = () => {
             Contact
           </li>
         </ul>
-        <div className="text-[#030303] lg:hidden pr-5">
+        <div className="text-[#030303] lg:hidden pr-2" onClick={toggleSidebar}>
           <RxHamburgerMenu />
         </div>
       </div>
+
+      {/* Sidebar */}
+      {isSidebarOpen && (
+        <div
+          className={`fixed top-0 right-0 h-screen w-64 bg-white shadow-md p-4 transition-transform duration-600 transform ${
+            isSidebarOpen ? "translate-x-0" : "translate-x-full"
+          } z-20`}
+        >
+          <div
+            className="flex justify-end text-[#27445D] mb-10"
+            onClick={toggleSidebar}
+          >
+            <IoClose size={25} />
+          </div>
+
+          <ul className="flex flex-col gap-6 justify-center items-center">
+            <li>About</li>
+            <li>Projects</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+      )}
       <div className="grid lg:grid-cols-[1fr_500px] pt-6">
         <div className="flex flex-col p-5 lg:pl-15 lg:pr-15  gap-4">
           <p className="text-[#71BBB2] font-bold text-lg">FRONTEND DEVELOPER</p>
