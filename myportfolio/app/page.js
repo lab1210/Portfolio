@@ -13,7 +13,7 @@ const Home = () => {
     <div className="grid grid-rows-[30px_auto_auto_auto] bg-[#ffffff] h-screen overflow-y-auto overflow-x-hidden ">
       {isSidebarOpen && (
         <div
-          className="fixed top-0 left-0 w-full h-full bg-black/65 z-10 transition-opacity duration-300"
+          className="fixed top-0 left-0 w-full h-full bg-black/75 z-10 transition-opacity duration-300"
           onClick={toggleSidebar}
         ></div>
       )}
@@ -44,7 +44,7 @@ const Home = () => {
       {/* Sidebar */}
       {isSidebarOpen && (
         <div
-          className={`fixed top-0 right-0 h-screen w-64 bg-white shadow-md p-4 transition-transform duration-600 transform ${
+          className={`fixed top-0 right-0 h-screen w-64 bg-white shadow-md p-4 transition-transform duration-600  transform  ${
             isSidebarOpen ? "translate-x-0" : "translate-x-full"
           } z-20`}
         >
